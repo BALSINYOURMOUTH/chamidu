@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f1e7" />
+  <meta name="description" content="SP නිෂ්පාදන — රසවත්, සාම්ප්‍රදායික ශ්‍රී ලාංකික කැවිලි සහ රසකැවිලි." />
+  <title>SP නිෂ්පාදන | සාම්ප්‍රදායික රසකැවිලි</title>
+  <style>
+    :root {
+      --cream: #f7f1e7;
+      --paper: #fffdf8;
+      --ink: #35251d;
+      --muted: #806e60;
+      --brown: #69432f;
+      --brown-dark: #3e2a20;
+      --gold: #b58a4b;
+      --line: #e8ddce;
+      --green: #42664a;
+      --shadow: 0 18px 50px rgba(65, 43, 28, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Noto Sans Sinhala", "Iskoola Pota", "Malithi Web", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .topline { height: 5px; background: linear-gradient(90deg, var(--brown-dark), var(--gold), #d5bd8e); }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(247, 241, 231, .92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(105, 67, 47, .10);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -.03em; }
+    .brand-mark {
+      width: 43px; height: 43px; display: grid; place-items: center;
+      border: 1px solid var(--gold); border-radius: 50%;
+      color: var(--brown); font-family: Georgia, serif; font-size: 17px;
+      background: #fffaf0;
+    }
+    .brand-name { font-size: 19px; line-height: 1.2; }
+    .brand-sub { display: block; color: var(--muted); font-size: 10px; letter-spacing: .16em; font-weight: 600; margin-top: 4px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; font-size: 13px; color: #665346; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 0; border-radius: 999px; padding: 12px 19px;
+      background: var(--brown-dark); color: #fffaf2; font-weight: 700; font-size: 13px;
+      transition: transform .2s, background .2s, box-shadow .2s; cursor: pointer;
+    }
+    .nav-cta:hover, .button:hover { transform: translateY(-2px); background: var(--brown); box-shadow: 0 9px 22px rgba(62,42,32,.18); }
+    .button.light { background: #fffaf2; color: var(--brown-dark); border: 1px solid var(--line); }
+    .button.green { background: var(--green); }
+    .hero { padding: 76px 0 78px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 55px; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .19em; font-size: 10px; font-weight: 800; }
+    h1 { font-size: clamp(38px, 5.4vw, 66px); line-height: 1.18; letter-spacing: -.055em; margin: 17px 0 18px; font-weight: 850; }
+    h1 span { color: var(--brown); }
+    .hero-copy { max-width: 490px; color: var(--muted); font-size: 15px; line-height: 1.95; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-note { margin-top: 24px; color: #917e6d; font-size: 11px; }
+    .hero-art {
+      position: relative; min-height: 390px; border-radius: 48% 48% 22px 22px;
+      background: #e8d8bf; overflow: hidden; display: grid; place-items: center;
+      box-shadow: var(--shadow);
+      background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,.7), transparent 35%), linear-gradient(145deg, #e8d9c3, #c5a77e);
+    }
+    .hero-art:before, .hero-art:after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; }
+    .hero-art:before { width: 320px; height: 320px; }
+    .hero-art:after { width: 390px; height: 390px; }
+    .plate {
+      position: relative; z-index: 1; width: 275px; height: 275px; border-radius: 50%;
+      background: #f9f2e5; border: 12px solid #fffaf0;
+      box-shadow: 0 20px 35px rgba(70,43,23,.2), inset 0 0 0 1px #dfcdb3;
+      display: grid; place-items: center;
+    }
+    .sweet-arrangement { position: relative; width: 190px; height: 190px; }
+    .sweet { position: absolute; display: grid; place-items: center; box-shadow: 0 8px 12px rgba(62,37,20,.18); }
+    .sweet.one { width: 82px; height: 66px; left: 12px; top: 18px; border-radius: 12px; transform: rotate(-12deg); background: repeating-linear-gradient(0deg,#6d351f 0 8px,#8b4d2e 8px 12px); }
+    .sweet.two { width: 72px; height: 72px; right: 8px; top: 15px; border-radius: 50%; background: radial-gradient(circle at 35% 30%,#d9a65b,#98602e 70%); }
+    .sweet.three { width: 77px; height: 64px; left: 4px; bottom: 20px; border-radius: 8px; transform: rotate(12deg); background: linear-gradient(135deg,#e7c17b,#b47b39); }
+    .sweet.four { width: 77px; height: 77px; right: 12px; bottom: 10px; border-radius: 50% 50% 42% 42%; background: radial-gradient(circle at 35% 25%,#f1d89e,#b77d3e 75%); }
+    .hero-stamp {
+      position: absolute; z-index: 2; bottom: 28px; left: -10px; background: var(--paper);
+      border: 1px solid var(--line); padding: 13px 18px; border-radius: 13px; box-shadow: var(--shadow);
+      font-size: 12px; font-weight: 700; color: var(--brown);
+    }
+    .section { padding: 78px 0; }
+    .section.paper { background: var(--paper); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 30px; }
+    .section h2 { font-size: clamp(28px, 3.5vw, 40px); letter-spacing: -.04em; margin: 9px 0 0; line-height: 1.25; }
+    .section-intro { max-width: 440px; color: var(--muted); font-size: 13px; }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }
+    .product {
+      background: #fff; border: 1px solid var(--line); border-radius: 17px; overflow: hidden;
+      transition: transform .22s, box-shadow .22s; box-shadow: 0 4px 15px rgba(65,43,28,.025);
+    }
+    .product:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .product-art { height: 158px; display: grid; place-items: center; position: relative; overflow: hidden; background: #eee1ce; }
+    .product-art:before { content: ""; width: 130px; height: 130px; border: 1px solid rgba(255,255,255,.65); border-radius: 50%; position: absolute; }
+    .product-art:after { content: ""; width: 170px; height: 170px; border: 1px solid rgba(255,255,255,.45); border-radius: 50%; position: absolute; }
+    .product-art .symbol { z-index: 1; font-family: Georgia, serif; font-size: 48px; color: rgba(75,45,26,.72); text-shadow: 0 3px 0 rgba(255,255,255,.3); }
+    .product-art.a { background: linear-gradient(135deg,#e8d0a9,#bd8d5b); }
+    .product-art.b { background: linear-gradient(135deg,#f0dfc4,#d2b18a); }
+    .product-art.c { background: linear-gradient(135deg,#eadcc8,#b78c62); }
+    .product-art.d { background: linear-gradient(135deg,#e8d8b9,#c99b59); }
+    .product-art.e { background: linear-gradient(135deg,#d8b58c,#916044); }
+    .product-art.f { background: linear-gradient(135deg,#eed9a9,#c18a4d); }
+    .product-art.g { background: linear-gradient(135deg,#f0e6d1,#c7a77a); }
+    .product-art.h { background: linear-gradient(135deg,#e8cda6,#b77e4e); }
+    .product-art.i { background: linear-gradient(135deg,#f0ddc1,#c99d70); }
+    .product-body { padding: 17px 18px 18px; }
+    .product-title { font-size: 16px; font-weight: 800; margin: 0; }
+    .product-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 12px; }
+    .price { font-size: 16px; font-weight: 850; color: var(--brown); }
+    .unit { font-size: 10px; color: var(--muted); }
+    .order-link { font-size: 11px; font-weight: 800; color: var(--green); border-bottom: 1px solid #a9b8a8; padding-bottom: 2px; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 55px; align-items: center; }
+    .about-card { min-height: 265px; border-radius: 22px; padding: 30px; background: var(--brown-dark); color: #fff7e9; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+    .about-card:after { content: "SP"; position: absolute; right: -12px; bottom: -65px; font: 190px Georgia,serif; color: rgba(255,255,255,.07); }
+    .about-card strong { font: 36px Georgia,serif; color: #e0c18b; }
+    .about-card small { color: #d8c7b2; letter-spacing: .14em; font-size: 10px; }
+    .about-copy { color: var(--muted); font-size: 14px; line-height: 2; }
+    .contact { background: #e9dfd0; }
+    .contact-panel { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 36px; display: flex; justify-content: space-between; align-items: center; gap: 25px; }
+    .contact-panel p { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+    .contact-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    footer { padding: 28px 0; background: var(--brown-dark); color: #e9dcca; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 11px; }
+    .footer-brand { font-size: 15px; font-weight: 800; color: #fff7e9; }
+    .footer-muted { color: #bba995; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 30px, 560px); }
+      .nav { min-height: 68px; }
+      .nav-links { display: none; }
+      .nav-cta { padding: 10px 14px; font-size: 11px; }
+      .hero { padding: 48px 0 58px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero-art { min-height: 320px; max-width: 480px; width: 100%; margin: 0 auto; }
+      .plate { width: 235px; height: 235px; }
+      .sweet-arrangement { transform: scale(.83); }
+      .hero-stamp { left: 4px; bottom: 16px; }
+      .section { padding: 58px 0; }
+      .section-head { display: block; }
+      .section-intro { margin-top: 12px; }
+      .menu-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 11px; }
+      .product-art { height: 125px; }
+      .product-body { padding: 13px; }
+      .product-title { font-size: 14px; }
+      .price { font-size: 14px; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .about-card { min-height: 210px; }
+      .contact-panel { padding: 25px; display: block; }
+      .contact-actions { margin-top: 20px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 380px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .product-art { height: 150px; }
+      .hero-actions .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="SP නිෂ්පාදන home">
+        <span class="brand-mark">SP</span>
+        <span><span class="brand-name">SP නිෂ්පාදන</span><span class="brand-sub">TRADITIONAL SRI LANKAN SWEETS</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">මුල් පිටුව</a>
+        <a href="#menu">අපගේ නිෂ්පාදන</a>
+        <a href="#about">අප ගැන</a>
+        <a href="#contact">සම්බන්ධ වන්න</a>
+      </nav>
+      <a class="nav-cta" href="https://wa.me/94741722573" target="_blank" rel="noopener">WhatsApp ඇණවුම් ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">A taste of tradition</div>
+          <h1>ගෙදර රසට,<br><span>හිත පිරෙන්නට.</span></h1>
+          <p class="hero-copy">ශ්‍රී ලාංකික සාම්ප්‍රදායික කැවිලි සහ රසකැවිලි ඔබ වෙත ගෙන එන SP නිෂ්පාදන වෙත සාදරයෙන් පිළිගනිමු.</p>
+          <div class="hero-actions">
+            <a class="button" href="#menu">නිෂ්පාදන බලන්න <span>↓</span></a>
+            <a class="button light" href="https://wa.me/94741722573?text=%E0%B6%86%E0%B6%BA%E0%B7%94%E0%B6%B6%E0%B7%9D%E0%B7%80%E0%B6%B1%E0%B7%8A%2C%20මට%20ඇණවුමක්%20ලබා%20දීමට%20අවශ්‍යයි." target="_blank" rel="noopener">අප හා කතා කරන්න</a>
+          </div>
+          <div class="hero-note">සාම්ප්‍රදායික රසය • සරල ඇණවුම් කිරීම • ඔබේ පහසුවට</div>
+        </div>
+        <div class="hero-art" aria-label="Decorative illustration representing traditional sweets">
+          <div class="plate"><div class="sweet-arrangement">
+            <div class="sweet one"></div><div class="sweet two"></div>
+            <div class="sweet three"></div><div class="sweet four"></div>
+          </div></div>
+          <div class="hero-stamp">රසයෙන් පිරුණු සතුටක් ✦</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section paper" id="menu">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">Our menu</div><h2>අපගේ නිෂ්පාදන</h2></div>
+          <p class="section-intro">ඔබ කැමති රසකැවිල්ල තෝරාගෙන WhatsApp හරහා හෝ දුරකථනයෙන් අප හා සම්බන්ධ වන්න.</p>
+        </div>
+        <div class="menu-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div class="about-card">
+          <div><small>MADE WITH A LOVE FOR TRADITION</small><strong>SP</strong></div>
+          <div style="font-size:13px; position:relative; z-index:1;">SP නිෂ්පාදන</div>
+        </div>
+        <div>
+          <div class="eyebrow">A little about us</div>
+          <h2>අපේ රසය,<br>අපේ සම්ප්‍රදාය.</h2>
+          <p class="about-copy">ශ්‍රී ලාංකික කැවිලි සහ රසකැවිලිවලට ආදරය කරන ඔබ වෙනුවෙන් SP නිෂ්පාදන. අපගේ නිෂ්පාදන පිළිබඳ වැඩි විස්තර දැනගැනීමට හෝ ඇණවුමක් ලබාදීමට අප හා සම්බන්ධ වන්න.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div><div class="eyebrow">Get in touch</div><h2 style="font-size:30px; margin:8px 0 0;">ඇණවුම් කිරීමට සූදානම්ද?</h2><p>ඔබගේ ඇණවුම ලබාදීමට අපට කතා කරන්න හෝ WhatsApp පණිවිඩයක් එවන්න.</p></div>
+          <div class="contact-actions">
+            <a class="button green" href="https://wa.me/94741722573" target="_blank" rel="noopener">WhatsApp ↗</a>
+            <a class="button light" href="tel:+94741722573">දුරකථන ඇමතුම</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div><div class="footer-brand">SP නිෂ්පාදන</div><div class="footer-muted">සාම්ප්‍රදායික ශ්‍රී ලාංකික රසකැවිලි</div></div>
+      <div class="footer-muted">© <span id="year"></span> SP නිෂ්පාදන. සියලු හිමිකම් ඇවිරිණි.</div>
+    </div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "94741722573";
+    const products = [
+      { name: "මුං කැවුම්", price: 50, unit: "එකක්", style: "a", symbol: "✦" },
+      { name: "හැදි කැවුම්", price: 50, unit: "එකක්", style: "b", symbol: "❋" },
+      { name: "අලුවා", price: 30, unit: "එකක්", style: "c", symbol: "◇" },
+      { name: "කොකිස්", price: 25, unit: "එකක්", style: "d", symbol: "✿" },
+      { name: "දොදොල්", price: 1000, unit: "1kg", style: "e", symbol: "◆" },
+      { name: "මුං ගුලි", price: 40, unit: "එකක්", style: "f", symbol: "●" },
+      { name: "කිරිබත්", price: 60, unit: "එකක්", style: "g", symbol: "❖" },
+      { name: "වැලිතලප", price: 30, unit: "එකක්", style: "h", symbol: "✧" },
+      { name: "ලැවරිය", price: 60, unit: "එකක්", style: "i", symbol: "⌁" }
+    ];
+
+    const grid = document.getElementById("productGrid");
+    products.forEach((product) => {
+      const message = `ආයුබෝවන්! SP නිෂ්පාදන වෙතින් ${product.name} ඇණවුම් කිරීමට කැමතියි. කරුණාකර වැඩි විස්තර ලබා දෙන්න.`;
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      const card = document.createElement("article");
+      card.className = "product";
+      card.innerHTML = `
+        <div class="product-art ${product.style}"><span class="symbol" aria-hidden="true">${product.symbol}</span></div>
+        <div class="product-body">
+          <h3 class="product-title">${product.name}</h3>
+          <div class="product-meta">
+            <div><div class="price">රු. ${product.price.toLocaleString("en-LK")}/=</div><div class="unit">${product.unit}</div></div>
+            <a class="order-link" href="${whatsappUrl}" target="_blank" rel="noopener">ඇණවුම් කරන්න ↗</a>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
