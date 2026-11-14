@@ -10,7 +10,7 @@ const fulfillmentNote = document.querySelector("#fulfillmentNote");
 let selectedProduct = null;
 
 const fulfillmentNotes = {
-  delivery: "බෙදාහැරීමේ ලිපිනය WhatsApp කතාබහේදී ඉල්ලා ගනු ඇත. ලිපිනය මෙම පිටුවේ නොගබඩා කරයි.",
+  delivery: "බෙදාහැරීම Kahawatha, Godakawela සහ Palmadulla අවට ප්‍රදේශවලට පමණි. ලිපිනය WhatsApp කතාබහේදී එවන්න; එය මෙම පිටුවේ නොගබඩා කරයි.",
   pickup: "ලබාගැනීමේ ස්ථානය සහ වේලාව WhatsApp හරහා තහවුරු කරගන්න."
 };
 
@@ -18,7 +18,7 @@ function openOrderDialog(product) {
   selectedProduct = product;
   orderForm.reset();
   orderSummary.textContent = `${product.name} — Rs. ${Number(product.price).toLocaleString("en-LK")} / ${product.unit === "piece" ? "piece" : product.unit}`;
-  fulfillmentNote.textContent = "ක්‍රමය තෝරන්න. බෙදාහැරීමේ ලිපිනය WhatsApp කතාබහේදී ඉල්ලා ගනු ඇත.";
+  fulfillmentNote.textContent = "ක්‍රමය තෝරන්න. බෙදාහැරීම Kahawatha, Godakawela සහ Palmadulla අවට ප්‍රදේශවලට පමණි.";
   orderDialog.showModal();
   orderQuantity.focus();
 }

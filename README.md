@@ -14,7 +14,7 @@ Open <http://localhost:8000>. Product cards display their photos and use a style
 
 ## Ordering
 
-Selecting a product opens a form that requires a whole-number quantity and delivery or pickup. The order summary opens in WhatsApp; delivery customers are prompted to share their address in that chat. The site does not collect or store addresses.
+Selecting a product opens a form that requires a whole-number quantity and delivery or pickup. Delivery is limited to the areas around Kahawatha, Godakawela, and Palmadulla; customers are prompted to confirm their exact location in WhatsApp. The site does not collect or store addresses.
 
 ## Cloudflare Pages deployment
 

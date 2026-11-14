@@ -141,6 +141,8 @@ h1 span { color: var(--brown); }
 .fulfillment-card { padding: 22px 24px; border: 1px solid var(--line); border-radius: 17px; background: #fff; }
 .fulfillment-card h3 { margin: 0; font-size: 17px; }
 .fulfillment-card p { margin: 7px 0 15px; color: var(--muted); font-size: 12px; }
+.fulfillment-card .delivery-area-note { padding: 11px 12px; border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; background: var(--cream); }
+.delivery-area-note strong { color: var(--brown); }
 .text-link { color: var(--green); font-size: 12px; font-weight: 800; border-bottom: 1px solid #a9b8a8; padding-bottom: 2px; }
 
 .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }

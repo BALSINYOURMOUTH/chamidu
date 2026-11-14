@@ -26,7 +26,7 @@ export function createProductMessage(product, { quantity, receivingMethod }) {
     "",
     `Receiving method: ${method}`,
     receivingMethod === "delivery"
-      ? "I will share my delivery address in this WhatsApp chat."
+      ? "Delivery is only available around Kahawatha, Godakawela, and Palmadulla. I will share my address in this WhatsApp chat to confirm availability."
       : "Please confirm the pickup location and available time.",
     "",
     "Thank you!"

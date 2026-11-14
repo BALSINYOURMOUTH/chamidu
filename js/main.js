@@ -1,7 +1,7 @@
 import { CONTACT, createWhatsAppUrl } from "./whatsapp.js";
 
 const orderMessages = {
-  delivery: "Hello! I would like to ask about placing an order for delivery. My area/address is: ",
+  delivery: "Hello! I would like to ask about delivery around Kahawatha, Godakawela, or Palmadulla. My area/address is: ",
   pickup: "Hello! I would like to ask about placing an order for pickup."
 };
 
