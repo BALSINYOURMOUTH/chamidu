@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "මුං කැවුම්",
+    "englishName": "Mung Kavum",
+    "price": 50,
+    "unit": "piece",
+    "image": "assets/images/products/mung-kavum.jpg"
+  },
+  {
+    "id": 2,
+    "name": "හැදි කැවුම්",
+    "englishName": "Hadi Kavum",
+    "price": 50,
+    "unit": "piece",
+    "image": "assets/images/products/hadi-kavum.jpg"
+  },
+  {
+    "id": 3,
+    "name": "අලුවා",
+    "englishName": "Aluwa",
+    "price": 30,
+    "unit": "piece",
+    "image": "assets/images/products/aluwa.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "කොකිස්",
+    "englishName": "Kokis",
+    "price": 25,
+    "unit": "piece",
+    "image": "assets/images/products/kokis.jpg"
+  },
+  {
+    "id": 5,
+    "name": "දොදොල්",
+    "englishName": "Dodol",
+    "price": 1000,
+    "unit": "1kg",
+    "image": "assets/images/products/dodol.jpg"
+  },
+  {
+    "id": 6,
+    "name": "මුං ගුලි",
+    "englishName": "Mung Guli",
+    "price": 40,
+    "unit": "piece",
+    "image": "assets/images/products/mung-guli.jpg"
+  },
+  {
+    "id": 7,
+    "name": "කිරිබත්",
+    "englishName": "Kiribath",
+    "price": 60,
+    "unit": "piece",
+    "image": "assets/images/products/kiribath.jpg"
+  },
+  {
+    "id": 8,
+    "name": "වැලිතලප",
+    "englishName": "Welithalapa",
+    "price": 30,
+    "unit": "piece",
+    "image": "assets/images/products/welithalapa.jpg"
+  },
+  {
+    "id": 9,
+    "name": "ලැවරිය",
+    "englishName": "Lavariya",
+    "price": 60,
+    "unit": "piece",
+    "image": "assets/images/products/lavariya.jpg"
+  }
+]
