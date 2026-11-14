@@ -1,6 +1,6 @@
 # SP නිෂ්පාදන
 
-A responsive static storefront for traditional Sri Lankan sweets. Product data is loaded from `data/products.json`; product images are expected under `assets/images/products/`. The image files are not in this workspace yet, so the storefront displays designed fallbacks until they are added.
+A responsive static storefront for traditional Sri Lankan sweets. Product data is loaded from `data/products.json`; product photos are stored under `assets/images/products/`. The hero banner is optional and falls back to a CSS illustration when it is unavailable.
 
 ## Run locally
 
@@ -10,11 +10,15 @@ Serve the project directory over HTTP so the browser can load the JSON module an
 python -m http.server 8000
 ```
 
-Open <http://localhost:8000>. The product cards show a styled fallback until their image files are added.
+Open <http://localhost:8000>. Product cards display their photos and use a styled fallback if an image cannot load.
+
+## Ordering
+
+Selecting a product opens a form that requires a whole-number quantity and delivery or pickup. The order summary opens in WhatsApp; delivery customers are prompted to share their address in that chat. The site does not collect or store addresses.
 
 ## Cloudflare Pages deployment
 
-1. Add the product image files listed in `data/products.json` to `assets/images/products/` and optionally add `assets/images/hero/hero-banner.jpg`.
+1. Optionally add `assets/images/hero/hero-banner.jpg` for a photo in the hero section.
 2. Push this project to a GitHub or GitLab repository.
 3. In Cloudflare, open **Workers & Pages → Create → Pages → Connect to Git** and select the repository.
 4. Choose the production branch. Leave the build command empty and set the build output directory to `.` (the project root).

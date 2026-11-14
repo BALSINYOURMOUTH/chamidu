@@ -144,6 +144,33 @@
       <div class="footer-muted">© <span id="year"></span> SP නිෂ්පාදන. සියලු හිමිකම් ඇවිරිණි.</div>
     </div>
   </footer>
+  <dialog class="order-dialog" id="orderDialog" aria-labelledby="orderDialogTitle">
+    <form class="order-form" id="orderForm">
+      <div class="order-dialog-header">
+        <div>
+          <div class="eyebrow">WhatsApp order</div>
+          <h2 id="orderDialogTitle">ඇණවුම සකස් කරන්න</h2>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Close order form" data-close-order>×</button>
+      </div>
+      <p class="order-summary" id="orderSummary"></p>
+
+      <label class="form-label" for="orderQuantity">ප්‍රමාණය</label>
+      <input class="form-input" id="orderQuantity" name="quantity" type="number" min="1" step="1" inputmode="numeric" required>
+
+      <fieldset class="fulfillment-options">
+        <legend>ලබාගැනීමේ ක්‍රමය</legend>
+        <label><input type="radio" name="receivingMethod" value="delivery" required> බෙදාහැරීම</label>
+        <label><input type="radio" name="receivingMethod" value="pickup" required> පැමිණ ලබාගැනීම</label>
+      </fieldset>
+      <p class="privacy-note" id="fulfillmentNote">ක්‍රමය තෝරන්න. බෙදාහැරීමේ ලිපිනය WhatsApp කතාබහේදී ඉල්ලා ගනු ඇත.</p>
+
+      <div class="dialog-actions">
+        <button class="button light" type="button" data-close-order>අවලංගු කරන්න</button>
+        <button class="button green" type="submit">WhatsApp වෙත යන්න ↗</button>
+      </div>
+    </form>
+  </dialog>
   <script type="module" src="./js/main.js"></script>
   <script type="module" src="./js/products.js"></script>
 </body>

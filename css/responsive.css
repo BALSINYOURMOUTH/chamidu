@@ -50,6 +50,8 @@
   .about-card { min-height: 210px; }
   .contact-panel { padding: 25px; }
   .contact-actions { margin-top: 20px; }
+  .order-form { padding: 23px 20px; }
+  .dialog-actions { align-items: stretch; flex-direction: column-reverse; }
   .footer-inner { align-items: flex-start; flex-direction: column; }
 }
 

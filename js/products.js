@@ -2,6 +2,60 @@ import { createProductMessage, createWhatsAppUrl } from "./whatsapp.js";
 
 const productGrid = document.querySelector("#productGrid");
 const productStatus = document.querySelector("#productStatus");
+const orderDialog = document.querySelector("#orderDialog");
+const orderForm = document.querySelector("#orderForm");
+const orderSummary = document.querySelector("#orderSummary");
+const orderQuantity = document.querySelector("#orderQuantity");
+const fulfillmentNote = document.querySelector("#fulfillmentNote");
+let selectedProduct = null;
+
+const fulfillmentNotes = {
+  delivery: "බෙදාහැරීමේ ලිපිනය WhatsApp කතාබහේදී ඉල්ලා ගනු ඇත. ලිපිනය මෙම පිටුවේ නොගබඩා කරයි.",
+  pickup: "ලබාගැනීමේ ස්ථානය සහ වේලාව WhatsApp හරහා තහවුරු කරගන්න."
+};
+
+function openOrderDialog(product) {
+  selectedProduct = product;
+  orderForm.reset();
+  orderSummary.textContent = `${product.name} — Rs. ${Number(product.price).toLocaleString("en-LK")} / ${product.unit === "piece" ? "piece" : product.unit}`;
+  fulfillmentNote.textContent = "ක්‍රමය තෝරන්න. බෙදාහැරීමේ ලිපිනය WhatsApp කතාබහේදී ඉල්ලා ගනු ඇත.";
+  orderDialog.showModal();
+  orderQuantity.focus();
+}
+
+orderForm.querySelectorAll("[data-close-order]").forEach((button) => {
+  button.addEventListener("click", () => orderDialog.close());
+});
+
+orderForm.addEventListener("change", (event) => {
+  if (event.target.name === "receivingMethod") {
+    fulfillmentNote.textContent = fulfillmentNotes[event.target.value];
+  }
+});
+
+orderForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const quantity = Number(orderQuantity.value);
+  if (!Number.isSafeInteger(quantity) || quantity < 1) {
+    orderQuantity.setCustomValidity("Enter a whole quantity of at least 1.");
+    orderQuantity.reportValidity();
+    return;
+  }
+  orderQuantity.setCustomValidity("");
+
+  const receivingMethod = orderForm.querySelector('input[name="receivingMethod"]:checked')?.value;
+  if (!selectedProduct || !receivingMethod) {
+    orderForm.reportValidity();
+    return;
+  }
+
+  const message = createProductMessage(selectedProduct, { quantity, receivingMethod });
+  window.open(createWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+  orderDialog.close();
+});
+
+orderQuantity.addEventListener("input", () => orderQuantity.setCustomValidity(""));
 
 function isProduct(product) {
   return product
@@ -60,12 +114,11 @@ function createProductCard(product) {
   unit.textContent = product.unit === "piece" ? "per piece" : product.unit;
   priceBlock.append(price, unit);
 
-  const orderLink = document.createElement("a");
+  const orderLink = document.createElement("button");
   orderLink.className = "order-link";
-  orderLink.href = createWhatsAppUrl(createProductMessage(product));
-  orderLink.target = "_blank";
-  orderLink.rel = "noopener noreferrer";
-  orderLink.textContent = "Order on WhatsApp ↗";
+  orderLink.type = "button";
+  orderLink.textContent = "Order ↗";
+  orderLink.addEventListener("click", () => openOrderDialog(product));
 
   meta.append(priceBlock, orderLink);
   body.append(title, englishName, meta);
