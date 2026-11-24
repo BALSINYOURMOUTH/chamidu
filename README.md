@@ -1,6 +1,6 @@
 # SP නිෂ්පාදන
 
-A responsive static storefront for traditional Sri Lankan sweets. Product data is loaded from `data/products.json`; product photos are stored under `assets/images/products/`. The hero banner is optional and falls back to a CSS illustration when it is unavailable.
+A responsive static storefront for traditional Sri Lankan sweets. Product data is loaded from `data/products.json`; product photos are stored under `assets/images/products/`. The hero banner is optional and falls back to a CSS illustration, including its plate, when it is unavailable. Noto Sans Sinhala is self-hosted under `assets/fonts/` and licensed under the SIL Open Font License.
 
 ## Run locally
 
@@ -14,7 +14,9 @@ Open <http://localhost:8000>. Product cards display their photos and use a style
 
 ## Ordering
 
-Selecting a product opens a form that requires a whole-number quantity and delivery or pickup. Delivery is limited to the areas around Kahawatha, Godakawela, and Palmadulla; customers are prompted to confirm their exact location in WhatsApp. The site does not collect or store addresses.
+Selecting a product opens a form that requires a whole-number quantity and delivery or pickup, and shows the calculated total as the quantity changes. The WhatsApp order includes the unit price and total. Delivery is limited to the areas around Kahawatha, Godakawela, and Palmadulla; customers are prompted to confirm their exact location and any delivery charges in WhatsApp. The site does not collect or store addresses.
+
+WhatsApp and phone contact details are configured in `js/whatsapp.js`; links in the page are populated from that configuration.
 
 ## Cloudflare Pages deployment
 

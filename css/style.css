@@ -14,6 +14,12 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+@font-face {
+  font-family: "Noto Sans Sinhala";
+  src: url("../assets/fonts/NotoSansSinhala.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
 body {
   margin: 0;
   color: var(--ink);
@@ -99,6 +105,9 @@ h1 span { color: var(--brown); }
 .hero-art::after { width: 390px; height: 390px; }
 .hero-photo { position: absolute; width: 100%; height: 100%; object-fit: cover; }
 .hero-art.image-missing .hero-photo { display: none; }
+.hero-art.image-loaded { background: transparent; box-shadow: none; }
+.hero-art.image-loaded::before, .hero-art.image-loaded::after { display: none; }
+.hero-art.image-loaded .plate, .hero-art.image-loaded .hero-stamp { display: none; }
 .plate {
   position: relative;
   z-index: 1;
@@ -194,6 +203,7 @@ h1 span { color: var(--brown); }
 .order-dialog-header h2 { margin: 6px 0 0; font-size: 24px; line-height: 1.3; }
 .dialog-close { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--brown-dark); font-size: 23px; cursor: pointer; }
 .order-summary { margin: 20px 0; padding: 12px 14px; border-radius: 11px; background: var(--cream); color: var(--brown); font-size: 14px; font-weight: 700; }
+.order-total { margin: 12px 0 0; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--brown); font-size: 16px; font-weight: 800; }
 .form-label, .fulfillment-options legend { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 800; }
 .form-input { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #cdbca8; border-radius: 10px; background: #fff; color: var(--ink); font: inherit; }
 .form-input:focus { outline: 2px solid var(--gold); outline-offset: 2px; }
@@ -245,4 +255,4 @@ footer { padding: 28px 0; background: var(--brown-dark); color: #e9dcca; }
 .footer-brand { color: #fff7e9; font-size: 15px; font-weight: 800; }
 .footer-muted { color: #bba995; }
 
-a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }

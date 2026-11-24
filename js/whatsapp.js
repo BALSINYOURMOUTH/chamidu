@@ -17,17 +17,22 @@ export function createProductMessage(product, { quantity, receivingMethod }) {
 
   const unit = product.unit === "piece" ? "piece" : product.unit;
   const method = receivingMethod === "delivery" ? "Delivery" : "Pickup";
+  const total = product.price * quantity;
+  if (!Number.isFinite(total)) {
+    throw new RangeError("Order total must be a finite amount.");
+  }
   return [
-    "Hello! I would like to order:",
+    "Hello! I would like to place an order.",
     "",
     `Product: ${product.name}`,
     `Price: Rs. ${Number(product.price).toLocaleString("en-LK")} per ${unit}`,
     `Quantity: ${quantity}`,
+    `Total: Rs. ${total.toLocaleString("en-LK")}`,
     "",
     `Receiving method: ${method}`,
     receivingMethod === "delivery"
-      ? "Delivery is only available around Kahawatha, Godakawela, and Palmadulla. I will share my address in this WhatsApp chat to confirm availability."
-      : "Please confirm the pickup location and available time.",
+      ? "Delivery is available around Kahawatha, Godakawela, and Palmadulla only.\nArea: ___________\n\nPlease confirm availability and delivery charges, if any."
+      : "Please confirm availability and pickup details.",
     "",
     "Thank you!"
   ].join("\n");

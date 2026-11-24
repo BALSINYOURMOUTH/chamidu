@@ -6,8 +6,11 @@ const orderDialog = document.querySelector("#orderDialog");
 const orderForm = document.querySelector("#orderForm");
 const orderSummary = document.querySelector("#orderSummary");
 const orderQuantity = document.querySelector("#orderQuantity");
+const orderTotal = document.querySelector("#orderTotal");
 const fulfillmentNote = document.querySelector("#fulfillmentNote");
 let selectedProduct = null;
+const supportedUnits = new Set(["piece", "1kg"]);
+const formatPrice = (price) => Number(price).toLocaleString("en-LK");
 
 const fulfillmentNotes = {
   delivery: "බෙදාහැරීම Kahawatha, Godakawela සහ Palmadulla අවට ප්‍රදේශවලට පමණි. ලිපිනය WhatsApp කතාබහේදී එවන්න; එය මෙම පිටුවේ නොගබඩා කරයි.",
@@ -17,7 +20,10 @@ const fulfillmentNotes = {
 function openOrderDialog(product) {
   selectedProduct = product;
   orderForm.reset();
-  orderSummary.textContent = `${product.name} — Rs. ${Number(product.price).toLocaleString("en-LK")} / ${product.unit === "piece" ? "piece" : product.unit}`;
+  orderQuantity.setCustomValidity("");
+  const unit = product.unit === "piece" ? "piece" : product.unit;
+  orderSummary.textContent = `Product: ${product.name} — Rs. ${formatPrice(product.price)} per ${unit}`;
+  updateOrderTotal();
   fulfillmentNote.textContent = "ක්‍රමය තෝරන්න. බෙදාහැරීම Kahawatha, Godakawela සහ Palmadulla අවට ප්‍රදේශවලට පමණි.";
   orderDialog.showModal();
   orderQuantity.focus();
@@ -43,10 +49,16 @@ orderForm.addEventListener("submit", (event) => {
     return;
   }
   orderQuantity.setCustomValidity("");
-
   const receivingMethod = orderForm.querySelector('input[name="receivingMethod"]:checked')?.value;
   if (!selectedProduct || !receivingMethod) {
     orderForm.reportValidity();
+    return;
+  }
+
+  const total = selectedProduct.price * quantity;
+  if (!Number.isFinite(total)) {
+    orderQuantity.setCustomValidity("The total price is too large to calculate.");
+    orderQuantity.reportValidity();
     return;
   }
 
@@ -55,16 +67,38 @@ orderForm.addEventListener("submit", (event) => {
   orderDialog.close();
 });
 
-orderQuantity.addEventListener("input", () => orderQuantity.setCustomValidity(""));
+orderQuantity.addEventListener("input", () => {
+  orderQuantity.setCustomValidity("");
+  updateOrderTotal();
+});
+
+function updateOrderTotal() {
+  const quantity = Number(orderQuantity.value);
+  if (!selectedProduct || !Number.isSafeInteger(quantity) || quantity < 1) {
+    orderTotal.textContent = "Total: Rs. —";
+    return;
+  }
+
+  const total = selectedProduct.price * quantity;
+  orderTotal.textContent = Number.isFinite(total)
+    ? `Total: Rs. ${formatPrice(total)}`
+    : "Total: Rs. —";
+}
 
 function isProduct(product) {
   return product
     && Number.isInteger(product.id)
+    && product.id > 0
     && typeof product.name === "string"
+    && product.name.trim().length > 0
     && typeof product.englishName === "string"
+    && product.englishName.trim().length > 0
     && Number.isFinite(product.price)
+    && product.price > 0
     && typeof product.unit === "string"
-    && typeof product.image === "string";
+    && supportedUnits.has(product.unit)
+    && typeof product.image === "string"
+    && product.image.trim().length > 0;
 }
 
 function createProductCard(product) {
@@ -134,7 +168,8 @@ async function loadProducts() {
     if (!response.ok) throw new Error(`Product list request failed (${response.status}).`);
 
     const products = await response.json();
-    if (!Array.isArray(products) || !products.every(isProduct)) {
+    if (!Array.isArray(products) || !products.every(isProduct)
+      || new Set(products.map((product) => product.id)).size !== products.length) {
       throw new Error("The product list has an invalid format.");
     }
 
